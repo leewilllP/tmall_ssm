@@ -3,8 +3,7 @@ package cn.absalom.tmall.pojo;
 import java.util.Date;
 
 public class Order {
-    private I
-    \nteger id;
+    private Integer id;
 
     private String orderCode;
 
