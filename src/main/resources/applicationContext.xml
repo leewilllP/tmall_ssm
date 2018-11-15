@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    <!--启动对注解的识别-->
+    <context:annotation-config  />
+
+    <context:component-scan base-package="cn.absalom.tmall.service"/>
+    <!--指定对jdbc.properties的引用-->
+    <context:property-placeholder location="classpath:jdbc.properties"/>
+    <!--配置数据库连接池-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <!--url、user、password-->
+        <property name="url" value="${jdbc.url}" />
+        <property name="username" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+        <!--配置初始化大小 最大 最小-->
+        <property name="initialSize" value="1" />
+        <property name="minIdle" value="1" />
+        <property name="maxActive" value="20" />
+        <!--配置连接超时-->
+        <property name="maxWait" value="60000"/>
+        <!--配置检测间隔时间 检测关闭的空连接-->
+        <property name="timeBetweenEvictionRunsMillis" value="60000"/>
+        <!--配置一个连接在池中最小的生存时间-->
+        <property name="minEvictableIdleTimeMillis" value="300000"/>
+
+
+        <property name="validationQuery" value="SELECT 1" />
+        <property name="testWhileIdle" value="true" />
+        <property name="testOnBorrow" value="false" />
+        <property name="testOnReturn" value="false" />
+
+        <!--
+        是否缓存preparedStatement，也就是PSCache。PSCache对支持游标的数据库性能提升巨大，比如说oracle。在mysql下建议关闭。
+        要启用PSCache，必须配置大于0，当大于0时，poolPreparedStatements自动触发修改为true。在Druid中，不会存在Oracle下PSCache占用内存过多的问题，可以把这个数值配置大一些，比如说100
+        -->
+        <!--打开PSCache 并指定每个连接上PSCache的大小-->
+        <property name="poolPreparedStatements" value="true"/>
+        <property name="maxPoolPreparedStatementPerConnectionSize" value="20"/>
+    </bean>
+    <!--Mybatis的SessionFactory配置-->
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="typeAliasesPackage" value="cn.absalom.tmall.pojo"/>
+        <property name="dataSource" ref="dataSource"/>
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+        <!--分页查询-->
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageInterceptor">
+                    <property name="properties">
+                        <value>
+                        </value>
+                    </property>
+                </bean>
+            </array>
+        </property>
+
+    </bean>
+    <!--Mybatis的Mapper文件识别-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="cn.absalom.tmall.mapper"/>
+    </bean>
+
+</beans>
