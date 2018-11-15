@@ -58,7 +58,7 @@
     <div class="pageDiv">
         <%@include file="../include/admin/adminPage.jsp"%>
     </div>
-
+<%--ff--%>
     <div class="panel panel-warning addDiv">
         <div class="panel-heading">新增属性</div>
         <div class="panel-body">

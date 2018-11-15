@@ -32,6 +32,7 @@
     <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.6" level="project" />
     <orderEntry type="library" name="Maven: com.alibaba:druid:1.0.18" level="project" />
     <orderEntry type="module-library">
+
       <library name="Maven: com.alibaba:jconsole:1.8.0">
         <CLASSES>
           <root url="jar://C:/Program Files/Java/jdk1.8.0_121/lib/jconsole.jar!/" />
