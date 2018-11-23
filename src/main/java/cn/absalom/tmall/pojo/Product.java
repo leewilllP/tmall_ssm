@@ -19,6 +19,17 @@ public class Product {
 
     private Date createDate;
 
+    private Category category;
+    private ProductImage firstProductImage;
+
+    public ProductImage getFirstProductImage() {
+        return firstProductImage;
+    }
+
+    public void setFirstProductImage(ProductImage firstProductImage) {
+        this.firstProductImage = firstProductImage;
+    }
+
     public Category getCategory() {
         return category;
     }
@@ -27,7 +38,7 @@ public class Product {
         this.category = category;
     }
 
-    private Category category;
+
 
     public Integer getId() {
         return id;
@@ -92,4 +103,5 @@ public class Product {
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
+
 }

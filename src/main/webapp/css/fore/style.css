@@ -1,4 +1,4 @@
-.show {
+﻿.show {
 	border: 1px dotted skyblue !important;
 }
 
@@ -54,6 +54,7 @@ nav.top {
 nav.top div.row div {
 	margin: 5px 0px;
 }
+
 
 nav.top div.row div {
 	background-color: lightgray;
