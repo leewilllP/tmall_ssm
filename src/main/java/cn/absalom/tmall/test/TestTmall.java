@@ -1,4 +1,5 @@
 /*
+
 package cn.absalom.tmall.test;
 
 import java.sql.Connection;
@@ -13,13 +14,13 @@ public class TestTmall {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        try(Connection c = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/tmall_ssm?useUnicode=true&" +
+        try(Connection c = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/tmall_ssm_demo?useUnicode=true&" +
                 "characterEncoding=utf8","root","admin");
             Statement s = c.createStatement();) {
             for (int i = 0;i<10;i++){
-                String sqlFormat = "insert into category values(null,'absalom%d')";
-                String sql = String.format(sqlFormat,i);
-                s.execute(sql);
+                String sqlFormat = "insert into user values(null,'袁佳宝','123')";
+                //String sql = String.format(sqlFormat,i);
+                s.execute(sqlFormat);
             }
             System.out.println("已经创建10条分类测试数据");
         } catch (SQLException e) {
@@ -27,4 +28,5 @@ public class TestTmall {
         }
     }
 }
+
 */
