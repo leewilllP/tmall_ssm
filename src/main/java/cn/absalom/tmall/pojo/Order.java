@@ -1,6 +1,9 @@
 package cn.absalom.tmall.pojo;
 
+import cn.absalom.tmall.service.OrderService;
+
 import java.util.Date;
+import java.util.List;
 
 public class Order {
     private Integer id;
@@ -28,6 +31,84 @@ public class Order {
     private Integer uid;
 
     private String status;
+
+    /*
+    *新增订单项列表
+    *新增订单对应用户
+    * 新增订单计数总额
+    * 新增订单总计数量
+    * */
+    private List<OrderItem> orderItems;
+    private  User user;
+    private float total;
+
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
+    }
+
+    public static void main(String[] args) {
+        Order order = new Order();
+        order.setStatus(OrderService.delete);
+        System.out.println(order.getStatusDesc());
+    }
+    public String getStatusDesc(){
+        String desc = "未知";
+        switch (status){
+            case OrderService.delete:
+                desc = "删除";
+
+            case OrderService.waitPay:
+                desc = "待付款";
+
+            case OrderService.waitConfirm:
+                desc = "待收货";
+
+            case OrderService.waitDelivery:
+                desc = "待发货";
+
+            case OrderService.waitReview:
+                desc = "待评价";
+
+            case OrderService.finish:
+                desc = "完成";
+
+            default:
+                desc = "未知";
+
+        }
+        return  desc;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public float getTotal() {
+        return total;
+    }
+
+    public void setTotal(float total) {
+        this.total = total;
+    }
+
+    public int getTotalNumber() {
+        return totalNumber;
+    }
+
+    public void setTotalNumber(int totalNumber) {
+        this.totalNumber = totalNumber;
+    }
+
+
+    private int totalNumber;
 
     public Integer getId() {
         return id;
